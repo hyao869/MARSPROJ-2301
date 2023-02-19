@@ -6,9 +6,9 @@ using System.Diagnostics;
 
 namespace SkillsTest.Pages
 {
-    public class EducationTab
+    public class EducationTab : CommonDriver
     {
-        public void AddNewEducaion(IWebDriver driver, string institute, string country, string title, string degree, string year)
+        public void AddNewEducaion(string institute, string country, string title, string degree, string year)
         {
             // click 'Add New' button
             IWebElement addNewBtn = driver.FindElement(By.XPath("//div/table/thead/tr/th[6]/div"));
@@ -33,7 +33,7 @@ namespace SkillsTest.Pages
 
         }
 
-        public string GetInstituteName(IWebDriver driver)
+        public string GetInstituteName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]", 5);
             //colume 2
@@ -42,7 +42,7 @@ namespace SkillsTest.Pages
             return instituteName.Text;
         }
 
-        public string GetCountryName(IWebDriver driver)
+        public string GetCountryName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[1]", 5);
             //colume 1
@@ -50,7 +50,7 @@ namespace SkillsTest.Pages
             return countryName.Text;
         }
 
-        public string GetTtitleName(IWebDriver driver)
+        public string GetTtitleName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[3]", 5);
             //column 3
@@ -58,7 +58,7 @@ namespace SkillsTest.Pages
             return titleName.Text;
         }
 
-        public string GetDegreeName(IWebDriver driver)
+        public string GetDegreeName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]", 5);
             //column 4
@@ -67,7 +67,7 @@ namespace SkillsTest.Pages
             return degree.Text;
         }
 
-        public string GetYear(IWebDriver driver)
+        public string GetYear()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]", 5);
             //column 5
@@ -75,9 +75,9 @@ namespace SkillsTest.Pages
             return gradYear.Text;
         }
 
-        public void EditEducaion(IWebDriver driver, string institute, string degree, string year)
+        public void EditEducaion(string institute, string degree, string year)
         {
-            string newRecordCreated = GetInstituteName(driver);
+            string newRecordCreated = GetInstituteName();
 
             //check record exist before edit it, avoid affecting other records
             if (newRecordCreated == "AUT")   
@@ -111,28 +111,28 @@ namespace SkillsTest.Pages
             addNewBtn.Click();
         }
 
-        public string GetEditedInstituteName(IWebDriver driver)
+        public string GetEditedInstituteName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]", 5);
             IWebElement editedInstituteName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]"));
             return editedInstituteName.Text;
         }
 
-        public string GetEditedDegreeName(IWebDriver driver)
+        public string GetEditedDegreeName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]", 5);
             IWebElement editedDegreeName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]"));
             return editedDegreeName.Text;
         }
 
-        public string GetEditedYear(IWebDriver driver)
+        public string GetEditedYear()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]", 5);
             IWebElement editedYear = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]"));
             return editedYear.Text;  //text? 
         }
 
-        public void DeleteEducaion(IWebDriver driver)
+        public void DeleteEducaion()
         {
             //delete, no confirmation is needed
             Wait.WaitForElementToExist(driver, "XPath", "//table/tbody/tr/td[6]/span[2]", 6);
@@ -152,7 +152,7 @@ namespace SkillsTest.Pages
         }
 
         //Valid delete
-        public void deleteValidation(IWebDriver driver)
+        public void deleteValidation()
         {
             IWebElement lastRecord = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr"));
            

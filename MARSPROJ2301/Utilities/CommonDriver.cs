@@ -26,7 +26,6 @@ namespace SkillsTest.Utilities
         //[OneTimeTearDown]
         public void CloseTestRun()
         {
-            WebDriverWait wait = new WebDriverWait(driver, new TimeSpan(0, 0, 3));   //explicit wait
             driver.FindElement(By.XPath("//button[contains(text(), 'Sign Out')]")).Click();
             driver.Quit();
         }

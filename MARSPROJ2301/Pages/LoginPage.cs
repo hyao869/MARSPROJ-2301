@@ -4,7 +4,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace SkillsTest.Pages
 {
-    public class LoginPage
+    public class LoginPage 
     {
         public void LoginActions(IWebDriver driver)
         {

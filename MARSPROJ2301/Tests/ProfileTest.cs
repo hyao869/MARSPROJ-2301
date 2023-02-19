@@ -41,21 +41,8 @@ namespace SkillsTest.Tests
 
             //Education tab object initialization and definiton
             EducationTab educationTabObj = new EducationTab();
-            educationTabObj.DeleteEducaion(driver);     //row number parameter?
+            educationTabObj.DeleteEducaion();     //row number parameter?
         }
-    
-        
-    /*
- 
-    //verify username after login
-    Thread.Sleep(5000);
-    string username = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/div[1]/div[2]/div/span")).Text;
-    //Console.WriteLine(username);
-    if (username == "Hi Heather") Console.WriteLine("--logged in successfully, test passed");
-    else Console.WriteLine("-- login failed");
-
-    */
-
-        
+       
     }
 }

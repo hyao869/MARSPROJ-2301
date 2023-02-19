@@ -10,7 +10,7 @@ using TechTalk.SpecFlow;
 namespace SkillsTest.StepDefinitions
 {
     [Binding]
-    public class ProfileFeatureStepDefinitions : CommonDriver
+    public class EducationStepDefinitions : CommonDriver
     {
         // Login page object initialization and definition
         LoginPage loginPageObj = new LoginPage();
@@ -36,14 +36,14 @@ namespace SkillsTest.StepDefinitions
         [When(@"create new education record with '([^']*)', '([^']*)', '([^']*)', '([^']*)', '([^']*)'")]
         public void WhenCreateNewEducationRecordWith(string instituteName, string country, string title, string degree, string year)
         {
-            educationTabObj.AddNewEducaion(driver, instituteName, country, title, degree, year);
+            educationTabObj.AddNewEducaion(instituteName, country, title, degree, year);
         }
 
         [Then(@"The record should be added successfully '([^']*)', '([^']*)', '([^']*)', '([^']*)', '([^']*)'")]
         public void ThenTheRecordShouldBeAddedSuccessfully(string instituteName, string country, string title, string degree, string year)
         {
-            string newInstituteName = educationTabObj.GetInstituteName(driver);            
-            string newDegreeName = educationTabObj.GetDegreeName(driver);
+            string newInstituteName = educationTabObj.GetInstituteName();            
+            string newDegreeName = educationTabObj.GetDegreeName();
             Debug.WriteLine(newInstituteName);
             Debug.WriteLine(newDegreeName);
 
@@ -56,16 +56,16 @@ namespace SkillsTest.StepDefinitions
         [When(@"Edit '([^']*)', '([^']*)', '([^']*)'on an exsiting education record")]
         public void WhenEditOnAnExsitingEducationRecord(string institute, string degree, string year)
         {
-            educationTabObj.EditEducaion(driver, institute, degree, year);
+            educationTabObj.EditEducaion(institute, degree, year);
         }
 
 
         [Then(@"The record should have been modified to '([^']*)', '([^']*)', '([^']*)'")]
         public void ThenTheRecordShouldHaveBeenModifiedTo(string institute, string degree, string year)
         {
-            string editedinstituteName = educationTabObj.GetEditedInstituteName(driver);
-            string editedDegree = educationTabObj.GetEditedDegreeName(driver);
-            string editedYear = educationTabObj.GetEditedYear(driver);
+            string editedinstituteName = educationTabObj.GetEditedInstituteName();
+            string editedDegree = educationTabObj.GetEditedDegreeName();
+            string editedYear = educationTabObj.GetEditedYear();
 
             Assert.That(editedinstituteName == institute, "Actual institute name and expected name do not match.");
             Assert.That(editedDegree == degree, "Actual degree and expected degree do not match.");
@@ -76,19 +76,19 @@ namespace SkillsTest.StepDefinitions
         [When(@"delete an existing education record")]
         public void WhenDeleteAnExistingEducationRecord()
         {
-            educationTabObj.DeleteEducaion(driver);
+            educationTabObj.DeleteEducaion();
         }
 
         [Then(@"The record should be deleted successfully")]
         public void ThenTheRecordShouldBeDeletedSuccessfully()
         {
-            educationTabObj.deleteValidation(driver);
+            educationTabObj.deleteValidation();
         }
       
         [AfterScenario]
         public void AfterScenarioCleanup()
         {
-            CloseTestRun();
+             CloseTestRun();
         }
     }
 }
