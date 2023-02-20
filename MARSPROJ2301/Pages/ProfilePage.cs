@@ -4,31 +4,28 @@ using SkillsTest.Utilities;
 
 namespace SkillsTest.Pages
 {
-    public class ProfilePage
+    
+    public class ProfilePage : CommonDriver
     {
-        public void GoToEducationTab (IWebDriver driver) {
+        IWebElement educationtab => driver.FindElement(By.LinkText("Education"));
+        IWebElement languagetab => driver.FindElement(By.LinkText("Languages"));
+        IWebElement description => driver.FindElement(By.XPath("//h3[contains(text(), \"Description\")]/span/i"));
+        public void GoToEducationTab () {
 
             Wait.WaitForElementToExist(driver, "LinkText", "Education", 15);
-
-            //Thread.Sleep(6000);
-            IWebElement educationtab = driver.FindElement(By.LinkText("Education"));
             educationtab.Click();
         }
 
-        public void GoToLanguageTab(IWebDriver driver)
+        public void GoToLanguageTab()
         {
             Wait.WaitForElementToExist(driver, "LinkText", "Languages", 15);
-
-            IWebElement educationtab = driver.FindElement(By.LinkText("Languages"));
-            educationtab.Click();
+            languagetab.Click();
         }
 
-        public void GoToDescription(IWebDriver driver)
+        public void GoToDescription()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//h3[contains(text(), \"Description\")]/span/i", 6);
-
-            IWebElement educationtab = driver.FindElement(By.XPath("//h3[contains(text(), \"Description\")]/span/i"));
-            educationtab.Click();
+            description.Click();
         }
     }
 }

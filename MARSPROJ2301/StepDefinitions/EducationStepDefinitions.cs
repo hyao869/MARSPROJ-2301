@@ -12,11 +12,8 @@ namespace SkillsTest.StepDefinitions
     [Binding]
     public class EducationStepDefinitions : CommonDriver
     {
-        // Login page object initialization and definition
         LoginPage loginPageObj = new LoginPage();
-        //Profile page object initialization and definiton
         ProfilePage profilePageObj = new ProfilePage();
-        //Education tab object initialization and definiton
         EducationTab educationTabObj = new EducationTab();
 
         [Given(@"User logged into Mars successfully")]
@@ -30,7 +27,7 @@ namespace SkillsTest.StepDefinitions
         [When(@"user navigate to education tab")]
         public void WhenUserNavigateToEducationTab()
         {   
-            profilePageObj.GoToEducationTab(driver);
+            profilePageObj.GoToEducationTab();
         }
 
         [When(@"create new education record with '([^']*)', '([^']*)', '([^']*)', '([^']*)', '([^']*)'")]
@@ -44,10 +41,9 @@ namespace SkillsTest.StepDefinitions
         {
             string newInstituteName = educationTabObj.GetInstituteName();            
             string newDegreeName = educationTabObj.GetDegreeName();
-            Debug.WriteLine(newInstituteName);
-            Debug.WriteLine(newDegreeName);
+            //Debug.WriteLine(newInstituteName);
+            //Debug.WriteLine(newDegreeName);
 
-            //Assert.That(addNewBtn.Text == "", "Actual code and expected code do not match.");
             Assert.That(newInstituteName == "AUT", "Actual institute name and expected name do not match.");
             Assert.That(newDegreeName == "Science", "Actual degree name and expected degree do not match.");
         }

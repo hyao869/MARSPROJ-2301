@@ -15,8 +15,7 @@ namespace SkillsTest.Tests
         {
             //Profile page object initialization and definiton
             ProfilePage profilePageObj = new ProfilePage();
-            profilePageObj.GoToEducationTab(driver);
-            //Education tab object initialization and definiton
+            profilePageObj.GoToEducationTab();
             EducationTab educationTabObj = new EducationTab();
             //educationTabObj.AddNewEducaion(driver, institute, country, title, degree, year);
 
@@ -26,7 +25,7 @@ namespace SkillsTest.Tests
         {
             //Profile page object initialization and definiton
             ProfilePage profilePageObj = new ProfilePage();
-            profilePageObj.GoToEducationTab(driver);
+            profilePageObj.GoToEducationTab();
 
             //Education tab object initialization and definiton
             EducationTab educationTabObj = new EducationTab();
@@ -37,7 +36,7 @@ namespace SkillsTest.Tests
         {
             //Profile page object initialization and definiton
             ProfilePage profilePageObj = new ProfilePage();
-            profilePageObj.GoToEducationTab(driver);
+            profilePageObj.GoToEducationTab();
 
             //Education tab object initialization and definiton
             EducationTab educationTabObj = new EducationTab();

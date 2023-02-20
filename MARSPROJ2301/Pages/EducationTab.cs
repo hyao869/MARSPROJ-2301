@@ -8,71 +8,71 @@ namespace SkillsTest.Pages
 {
     public class EducationTab : CommonDriver
     {
+        // add new
+        private IWebElement addNewBtn => driver.FindElement(By.XPath("//div/table/thead/tr/th[6]/div"));
+        private IWebElement instituteTextbox => driver.FindElement(By.Name("instituteName"));
+        private IWebElement countryName => driver.FindElement(By.Name("country"));
+        private IWebElement degreeTextbox => driver.FindElement(By.Name("degree"));
+        private IWebElement addBtn => driver.FindElement(By.XPath("//input[@value='Add']"));
+
+        //get new
+        private IWebElement newInstituteName => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]"));
+        private IWebElement newCountryName => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[1]"));
+        private IWebElement newTitleName => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[3]"));
+        private IWebElement newDegree => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]"));
+        private IWebElement gradYear => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]"));
+        private IWebElement updateBtn => driver.FindElement(By.XPath("//input[@value='Update']"));
+        //get edited
+        private IWebElement editedInstituteName => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]"));
+        private IWebElement editedDegreeName => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]"));
+        private IWebElement editedYear => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]"));
+        //remove
+        private IWebElement removeIcon => driver.FindElement(By.XPath("//table/tbody/tr/td[6]/span[2]"));
+        private IWebElement lastRecord => driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr"));
+
         public void AddNewEducaion(string institute, string country, string title, string degree, string year)
-        {
-            // click 'Add New' button
-            IWebElement addNewBtn = driver.FindElement(By.XPath("//div/table/thead/tr/th[6]/div"));
+        {            
             addNewBtn.Click();
-
-            //Assert a button present, Assert a button enabled or disabled
-            IWebElement instituteName = driver.FindElement(By.Name("instituteName"));
-            instituteName.SendKeys(institute);
-
-            IWebElement countryName = driver.FindElement(By.Name("country"));
+            instituteTextbox.SendKeys(institute);        
             countryName.Click();
             new SelectElement(driver.FindElement(By.Name("country"))).SelectByValue(country);
-
             new SelectElement(driver.FindElement(By.Name("title"))).SelectByValue(title);
-
-            IWebElement degreeName = driver.FindElement(By.Name("degree"));
-            degreeName.SendKeys(degree);
-            new SelectElement(driver.FindElement(By.Name("yearOfGraduation"))).SelectByValue(year);
-
-            IWebElement addBtn = driver.FindElement(By.XPath("//input[@value='Add']"));
+            degreeTextbox.SendKeys(degree);
+            new SelectElement(driver.FindElement(By.Name("yearOfGraduation"))).SelectByValue(year);        
             addBtn.Click();  
-
         }
 
         public string GetInstituteName()
         {
-            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]", 5);
-            //colume 2
-            IWebElement instituteName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]"));
-            Debug.WriteLine(instituteName.Text);
-            return instituteName.Text;
+            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]", 5);      
+            //Debug.WriteLine(newInstituteName.Text);
+            return newInstituteName.Text;
         }
 
         public string GetCountryName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[1]", 5);
-            //colume 1
-            IWebElement countryName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[1]"));
-            return countryName.Text;
+            return newCountryName.Text;
         }
 
         public string GetTtitleName()
         {
-            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[3]", 5);
-            //column 3
-            IWebElement titleName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[3]"));
-            return titleName.Text;
+            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[3]", 5);          
+            return newTitleName.Text;
         }
 
         public string GetDegreeName()
         {
-            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]", 5);
-            //column 4
-            IWebElement degree = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]"));
-            Debug.WriteLine(degree.Text);
-            return degree.Text;
+            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]", 5);        
+            //Debug.WriteLine(newDegree.Text);
+            return newDegree.Text;
         }
 
         public string GetYear()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]", 5);
-            //column 5
-            IWebElement gradYear = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]"));
             return gradYear.Text;
+            //get { return gradYear.Text; }
         }
 
         public void EditEducaion(string institute, string degree, string year)
@@ -90,45 +90,34 @@ namespace SkillsTest.Pages
                 Assert.Fail("Record to be edited hasn't been found, education record not edited");
             }
 
-            //edit institute textbox
-            IWebElement instituteTextbox = driver.FindElement(By.Name("instituteName"));
             instituteTextbox.Clear();
             instituteTextbox.SendKeys(institute);
             
-            //edit degree textbox
-            IWebElement degreeTextbox = driver.FindElement(By.Name("degree"));
             degreeTextbox.Clear();
             degreeTextbox.SendKeys(degree);
             
             //select new graduate year from dropdow list
             new SelectElement(driver.FindElement(By.Name("yearOfGraduation"))).SelectByValue(year);
-
             //new SelectElement(driver.FindElement(By.Name("country"))).SelectByValue("New Zealand");
             //new SelectElement(driver.FindElement(By.Name("title"))).SelectByValue("B.A");
-
-            //click edit button
-            IWebElement addNewBtn = driver.FindElement(By.XPath("//input[@value='Update']"));
-            addNewBtn.Click();
+            updateBtn.Click();
         }
 
         public string GetEditedInstituteName()
         {
-            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]", 5);
-            IWebElement editedInstituteName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]"));
+            Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[2]", 5);          
             return editedInstituteName.Text;
         }
 
         public string GetEditedDegreeName()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]", 5);
-            IWebElement editedDegreeName = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[4]"));
             return editedDegreeName.Text;
         }
 
         public string GetEditedYear()
         {
             Wait.WaitForElementToExist(driver, "XPath", "//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]", 5);
-            IWebElement editedYear = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr[last()]/td[5]"));
             return editedYear.Text;  //text? 
         }
 
@@ -142,7 +131,6 @@ namespace SkillsTest.Pages
             
             if (iRowsCount > 0)
             {
-                IWebElement removeIcon = driver.FindElement(By.XPath("//table/tbody/tr/td[6]/span[2]"));
                 removeIcon.Click();
             }
             else
@@ -153,11 +141,9 @@ namespace SkillsTest.Pages
 
         //Valid delete
         public void deleteValidation()
-        {
-            IWebElement lastRecord = driver.FindElement(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr"));
-           
+        {           
             int iRowsCount = driver.FindElements(By.XPath("//form/div[4]/div/div[2]/div/table/tbody/tr")).Count;
-            Debug.WriteLine("iRowsCount : ", iRowsCount);
+            //Debug.WriteLine("iRowsCount : ", iRowsCount);
 
             if (iRowsCount == 0 ||lastRecord.Text == "" || lastRecord.Text != "MIT")
             {
